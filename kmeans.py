@@ -64,14 +64,14 @@ def Kcluster(data,distance=euclidian,k=3):
                     #Move o centroide para a zona média do cluster       
                     #no caso recalculamos as distancias em relação as instâncias e movemo para aquele ponto         
                     # em que teremos a menor média para as distâncias.         
-                    for i in range(k):
-                        avgs=[0.0]*len(data[0]) #Cria a lista de médias             
-                        if len(bestmatches[i]) > 0:
-                            for rowid in bestmatches[i]:
-                                for m in range(len(data[rowid])):
-                                    avgs[m] += data[rowid][m]
-                                for j in range(len(avgs)):
-                                    avgs[j] /= len(bestmatches[i])
+            for i in range(k):
+                avgs=[0.0]*len(data[0]) #Cria a lista de médias             
+                if len(bestmatches[i]) > 0:
+                    for rowid in bestmatches[i]:
+                        for m in range(len(data[rowid])):
+                            avgs[m] += data[rowid][m]
+                        for j in range(len(avgs)):
+                            avgs[j] /= len(bestmatches[i])
                         clusters[i]=avgs
  
     return bestmatches
