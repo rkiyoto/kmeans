@@ -1,5 +1,6 @@
 #Primeiro importamos o modulo.
 from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
  
 #Aqui eu instancio o objeto.
 iris = load_iris()
@@ -52,13 +53,26 @@ def Kcluster(data,distance=euclidian,k=3):
             bestmatche = 0 #Aqui armazeno o índice da menor distância para comparação
             for i in range(k):
                 d = distance(clusters[i],row) #Calcula a distancia em relação ao centroide
-                if d < distance(clusters[bestmatche],row): #Aqui vejo se é a menor distância                     bestmatche = i             bestmatches[bestmatche].append(j) #Aqui coloco a instância no seu cluster                 #Se o resultado for o mesmo que da ultima vez esta completo         if bestmatches == lastmatches:             break         lastmatches=bestmatche             #Move o centroide para a zona média do cluster        #no caso recalculamos as distancias em relação as instâncias e movemo para aquele ponto         # em que teremos a menor média para as distâncias.         for i in range(k):             avgs=[0.0]*len(data[0]) #Cria a lista de médias             if len(bestmatches[i])&amp;amp;gt;0:
-	                for rowid in bestmatches[i]:
-	                    for m in range(len(data[rowid])):
-	                        avgs[m] += data[rowid][m]
-	                for j in range(len(avgs)):
-	                    avgs[j] /= len(bestmatches[i])
-	                clusters[i]=avgs
+                if d < distance(clusters[bestmatche],row): #Aqui vejo se é a menor distância
+                    bestmatche = i             
+                    bestmatches[bestmatche].append(j) #Aqui coloco a instância no seu cluster                
+                    #Se o resultado for o mesmo que da ultima vez esta completo         
+                    if bestmatches == lastmatches:             
+                        break       
+
+                    lastmatches=bestmatche             
+                    #Move o centroide para a zona média do cluster       
+                    #no caso recalculamos as distancias em relação as instâncias e movemo para aquele ponto         
+                    # em que teremos a menor média para as distâncias.         
+                    for i in range(k):
+                        avgs=[0.0]*len(data[0]) #Cria a lista de médias             
+                        if len(bestmatches[i]) > 0:
+                            for rowid in bestmatches[i]:
+                                for m in range(len(data[rowid])):
+                                    avgs[m] += data[rowid][m]
+                                for j in range(len(avgs)):
+                                    avgs[j] /= len(bestmatches[i])
+                        clusters[i]=avgs
  
     return bestmatches
 
@@ -87,7 +101,7 @@ for h in range(1,7):
     for plot,color in zip(plots,['r','b','g']):
         plt.scatter(plot[:,x],plot[:,y],c=color, alpha=0.7)
     if y < 3:         
-    	y += 1     
+        y += 1     
     elif y >= 3:
         x += 1
         y = x + 1
