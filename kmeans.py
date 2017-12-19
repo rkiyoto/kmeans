@@ -7,13 +7,13 @@ plt.rcParams['figure.figsize'] = (16, 9)
 plt.style.use('ggplot')
 
 # Importing the dataset
-data = pd.read_csv('breast_cancer.csv')
+data = pd.read_csv('wdbc.csv')
 print(data.shape)
 data.head()
 
 # Getting the values and plotting it
-f1 = data['malignant'].values
-f2 = data['benign'].values
+f1 = data["radius"].values
+f2 = data["perimeter"].values
 X = np.array(list(zip(f1, f2)))
 
 # Euclidean Distance Caculator
