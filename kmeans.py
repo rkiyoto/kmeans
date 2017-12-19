@@ -13,7 +13,7 @@ data.head()
 
 # Getting the values and plotting it
 f1 = data["radius"].values
-f2 = data["perimeter"].values
+f2 = data["compactness"].values
 X = np.array(list(zip(f1, f2)))
 
 # Euclidean Distance Caculator
@@ -56,5 +56,7 @@ for i in range(k):
         ax.scatter(points[:, 0], points[:, 1], s=7, c=colors[i])
 ax.scatter(C[:, 0], C[:, 1], marker='*', s=200, c='#050505')
 
+
+plt.title("Hey")
 import pylab
 pylab.show()
